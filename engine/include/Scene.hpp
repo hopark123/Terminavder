@@ -4,10 +4,11 @@
 
 namespace Tvdr{
 	class Scene : public Object{
+		friend class GameManager;
 	private:
-		void StartAll();
-		void UpdateAll();
+		void UpdateAll(Object* obj = nullptr);
 	public:
-		static Scene* CreateScene();	
+		Scene();
+		virtual ~Scene();
 	};
 }

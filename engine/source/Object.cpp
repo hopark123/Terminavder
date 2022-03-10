@@ -7,7 +7,10 @@ namespace Tvdr{
 
 	Object::Object() : _parent(nullptr){}
 	Object::~Object(){
-
+		for (auto child : _children)
+			delete child;
+		if (_parent)
+			_parent->_children.remove(this);
 	}
 
 	bool Object::AddChild(Object *obj){
@@ -19,17 +22,8 @@ namespace Tvdr{
 		return false;
 	}
 
-	bool Object::Destroy(){
-		for (auto child : _children)
-			child->Destroy();
-		if (_parent)
-			_parent->_children.remove(this);
-		delete this;
-	}
-
-	void Object::Start(){}
 	void Object::Update(){}
-	void Object::Render(vector<string> &screen, int width, int height){}
+	void Object::Render(){}
 
 	Object* Object::CreateObject(Object* parent){
 		auto obj = new Object;

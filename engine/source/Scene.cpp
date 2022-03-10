@@ -2,9 +2,21 @@
 
 namespace Tvdr{
 
-	Scene* Scene::CreateScene(){
-		Scene* scene = new Scene;
-		scene->SetParent(nullptr);
-		return scene;
+	Scene::Scene(){
+
+	}
+
+	Scene::~Scene(){
+		
+	}
+
+	void Scene::UpdateAll(Object* obj){
+		if (obj == nullptr)
+			obj = this;
+		for (auto child : _children){
+			UpdateAll(child);
+		}
+		this->Update();
+		this->Render();
 	}
 }

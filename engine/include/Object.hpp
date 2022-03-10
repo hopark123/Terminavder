@@ -5,24 +5,23 @@
 #include <string>
 
 namespace Tvdr{
+
 	class Object{
+		friend class Scene;
 	private:
 		std::list<Object*> _children;
 		Object* _parent;
 	protected:
-		Object();
 		bool AddChild(Object* obj);
-		virtual bool Destroy();
-
-		virtual void Start();
+		
 		virtual void Update();
-		virtual void Render(std::vector<std::string> &screen);
+		virtual void Render();
 	public:
 		static Object* CreateObject(Object* parent = nullptr);
 		void SetParent(Object* parent);
 		Object const *GetParent();
 
-
+		Object();
 		virtual ~Object();
 	};
 }

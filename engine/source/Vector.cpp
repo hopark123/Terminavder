@@ -1,5 +1,5 @@
 #include "Vector.hpp"
 
 namespace Tvdr{
-	Vector::Vector(int x, int y) : x(x), y(y){}
+	Vector::Vector(float x, float y) : x(x), y(y){}
 }
