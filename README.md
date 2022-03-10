@@ -1,4 +1,6 @@
 # Terminavder
 
-sohndohyun forked.
-hopark
+invader made with SDL2
+
+
+by sohndohyun & hopark123
