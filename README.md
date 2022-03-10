@@ -1,3 +1,0 @@
-# Terminavder
-
-sohndohyun forked.

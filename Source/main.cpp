@@ -1,5 +1,11 @@
-#include "Input.hpp"
+#include "GameManager.hpp"
 
 int main() {
-	while(1);
+	GameManager *game = GameManager::Instance();
+
+	game->Run();
+	GameManager::Release();
+	game = NULL;
+
+	return 0;
 }
