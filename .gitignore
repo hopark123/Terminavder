@@ -1,5 +1,4 @@
-.vscode/
-.gitignore
-.DS_Store/
-*.o
-*.out
+.Terminvader
+engine/include/SDL2/*
+lib/*
+.vscode/*
