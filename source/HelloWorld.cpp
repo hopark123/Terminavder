@@ -23,3 +23,5 @@ void HelloWorld::Update(){
 		std::cout << "Mulit" << std::endl;
 	// */
 }
+
+
