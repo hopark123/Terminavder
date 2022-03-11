@@ -42,17 +42,17 @@ void GameManager::Run() {
 
 		gettimeofday(&tv, NULL);
 		// std::cout <<  (tv.tv_sec * (long)1000) + (tv.tv_usec / 1000) << std::endl;
-		if ((tv.tv_sec * (long)1000) + (tv.tv_usec / 1000)) {
-			mInputManager->Update((tv.tv_sec * (long)1000) + (tv.tv_usec / 1000));
-		if (mInputManager->KeyDown(SDL_SCANCODE_RIGHT))
-			std::cout << "left" << std::endl;
+		mInputManager->Update((tv.tv_sec * (long)1000) + (tv.tv_usec / 1000));
 		if (mInputManager->KeyDown(SDL_SCANCODE_DOWN))
-			std::cout << "down" << std::endl;
-		if (mInputManager->DoubleKeyDown(SDL_SCANCODE_8))
+			std::cout << "down press" << std::endl;
+			// if (mInputManager->GetKey(SDL_SCANCODE_DOWN))
+			// std::cout << "down pressing" << std::endl;
+		if (mInputManager->KeyUP(SDL_SCANCODE_DOWN))
+			std::cout << "down up" << std::endl;
+		if (mInputManager->DoubleKeyDown(SDL_SCANCODE_DOWN))
 			std::cout << "Double" << std::endl;
 		if (mInputManager->MulitKeyDown(SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT))
 			std::cout << "Mulit" << std::endl;
-		}
-		usleep(100000);
+		// usleep(100000);
 	}
 }

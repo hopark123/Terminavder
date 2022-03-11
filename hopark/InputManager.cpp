@@ -13,49 +13,55 @@ void InputManager::Release() {
 	sInstance = NULL;
 }
 
-InputManager::InputManager() : _currentTime(0), _updateInterval(1000) {
+InputManager::InputManager() : _currentTime(0), _updateInterval(100) {
 	memset(&_keyState, 0, sizeof(s_KeyState));
-	_keyState.nowState = SDL_GetKeyboardState(NULL);
+	const Uint8 *nextState = SDL_GetKeyboardState(NULL);
+	for (int i = 0 ; i < SDL_NUM_SCANCODES; ++i)
+		_keyState[i].nowState = nextState[i];
 }
 
 InputManager::~InputManager() {
 }
 
 bool InputManager::KeyDown(SDL_Scancode scanCode) {
-	return(GetKeyState().nowState[scanCode] && GetKeyState().lastState[scanCode]);
+	return(GetKeyState(scanCode).nowState && !GetKeyState(scanCode).lastState);
+}
+
+bool InputManager::GetKey(SDL_Scancode scanCode) {
+	return(GetKeyState(scanCode).nowState);
 }
 
 bool InputManager::KeyUP(SDL_Scancode scanCode) {
-	return(!GetKeyState().nowState[scanCode]);
+	return(!GetKeyState(scanCode).nowState && GetKeyState(scanCode).lastState);
 }
 
 bool InputManager::DoubleKeyDown(SDL_Scancode scanCode) {
-	// std::cout << "@@@@current"<< sInstance->_currentTime << "get" << GetKeyState().lastUptime[scanCode] << " = [" << sInstance->_currentTime - GetKeyState().lastUptime[scanCode] << std::endl;
-	if (KeyDown(scanCode) && sInstance->_currentTime - GetKeyState().lastUptime[scanCode] < sInstance->_updateInterval) {
-		sInstance->_keyState.isDouble[scanCode] = true;
+
+	if (KeyDown(scanCode) && GetKeyState(scanCode).lastUptime && sInstance->_currentTime - GetKeyState(scanCode).lastUptime < sInstance->_updateInterval) {
+		sInstance->_keyState[scanCode].isDouble = true;
 		return true;
 	}
 	return false;
 }
 
 bool InputManager::MulitKeyDown(SDL_Scancode scanCode1 , SDL_Scancode scanCode2) {
-	return(GetKeyState().nowState[scanCode1] && GetKeyState().nowState[scanCode2]);
+	return((GetKeyState(scanCode1).nowState && KeyDown(scanCode2))
+			|| GetKeyState(scanCode2).nowState && KeyDown(scanCode1));
 }
 
 void InputManager::Update(uint currentTime) {
 	_currentTime = currentTime;
 	const Uint8 *nextState = SDL_GetKeyboardState(NULL);
-	for (int i = 0 ; i < SDL_NUM_SCANCODES; i++) {
-		_keyState.lastState[i] = _keyState.nowState[i];
-		if (_keyState.lastState[i] && !nextState[i]) {
-			_keyState.lastUptime[i] = _keyState.isDouble[i] ? 0 : _currentTime;
-			_keyState.isDouble[i] = false;
-			std::cout << "last" <<_keyState.lastUptime[i] << std::endl;
+	for (int i = 0 ; i < SDL_NUM_SCANCODES; ++i) {
+		_keyState[i].lastState = _keyState[i].nowState;
+		_keyState[i].nowState = nextState[i];
+		if (_keyState[i].lastState && !nextState[i]) {
+			_keyState[i].lastUptime = _keyState[i].isDouble ? 0 : currentTime;
+			_keyState[i].isDouble = false;
 		}
 	}
-	_keyState.nowState = nextState;
 }
 
-s_KeyState const &InputManager::GetKeyState(void) {
-	return sInstance->_keyState;
+s_KeyState const &InputManager::GetKeyState(SDL_Scancode scanCode) {
+	return sInstance->_keyState[scanCode];
 }
