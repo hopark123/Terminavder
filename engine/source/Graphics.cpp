@@ -1,5 +1,5 @@
 #include "Graphics.hpp"
-
+#include <iostream>
 Graphics *Graphics::sInstance = NULL;
 bool Graphics::sInitialized = false;
 
@@ -21,14 +21,14 @@ bool Graphics::Initialized() {
 }
 
 Graphics::Graphics() {
-	mBackBuffer = NULL;
+	_renderer = NULL;
 	sInitialized = Init();
 }
 
 Graphics::~Graphics() {
 	SDL_DestroyWindow(mWindow);
 	mWindow = NULL;
-
+	SDL_DestroyRenderer(_renderer);
 	SDL_Quit();
 }
 
@@ -45,11 +45,29 @@ bool Graphics::Init() {
 		return false;
 	}
 
-	mBackBuffer = SDL_GetWindowSurface(mWindow);
+	_renderer = SDL_CreateRenderer(mWindow, -1, 0);
+	if (mWindow == NULL) {
+		printf("renderer creation ERROR : %s\n", SDL_GetError());
+		return false;
+	}
 
 	return true;
 }
 
+void Graphics::ClearRenderer(){
+	SDL_RenderClear(_renderer);
+}
+
 void Graphics::Render() {
+	SDL_RenderPresent(_renderer);
 	SDL_UpdateWindowSurface(mWindow);
+}
+
+SDL_Texture* Graphics::GetTextureFromSurface(SDL_Surface* surface){
+	return SDL_CreateTextureFromSurface(Instance()->_renderer, surface);
+}
+
+void Graphics::RenderTexture(SDL_Texture* texture){
+	auto renderer = Instance()->_renderer;
+	SDL_RenderCopy(renderer, texture, NULL, NULL);
 }

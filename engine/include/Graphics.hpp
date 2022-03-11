@@ -12,13 +12,17 @@ private :
 	static bool sInitialized;
 
 	SDL_Window *mWindow;
-	SDL_Surface *mBackBuffer;
+	SDL_Renderer* _renderer;
 
 public :
 	static Graphics *Instance();
 	static void Realase();
 	static bool Initialized();
+	void ClearRenderer();
 	void Render();
+
+	static SDL_Texture* GetTextureFromSurface(SDL_Surface* surface);
+	static void RenderTexture(SDL_Texture* texture); 
 private :
 	Graphics();
 	~Graphics();
