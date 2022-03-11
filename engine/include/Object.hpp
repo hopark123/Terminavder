@@ -3,6 +3,7 @@
 #include <list>
 #include <vector>
 #include <string>
+#include <Vector.hpp>
 
 namespace Tvdr{
 
@@ -12,6 +13,10 @@ namespace Tvdr{
 		std::list<Object*> _children;
 		Object* _parent;
 	protected:
+		Vector _position;
+		Vector _scale;
+		float _rotate;
+
 		bool AddChild(Object* obj);
 		
 		virtual void Update();

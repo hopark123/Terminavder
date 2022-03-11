@@ -1,10 +1,14 @@
 #include "GameObject.hpp"
 #include <Graphics.hpp>
+#include <iostream>
 
 namespace Tvdr{
 	using namespace std;
 
-	GameObject::GameObject(string imagePath): _scale(1, 1), _rotate(0) {
+	GameObject::GameObject(string imagePath) {
+		_scale = Vector(1, 1);
+		_rotate = 0;
+
 		_surface = SDL_LoadBMP(imagePath.c_str());
 		_texture = Graphics::GetTextureFromSurface(_surface);
 		int w, h;

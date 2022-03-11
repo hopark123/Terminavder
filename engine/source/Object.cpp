@@ -1,5 +1,6 @@
 #include "Object.hpp"
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -9,8 +10,8 @@ namespace Tvdr{
 	Object::~Object(){
 		if (_parent)
 			_parent->_children.remove(this);
-		for (auto child : _children)
-			delete child;
+		while (!_children.empty())
+			delete _children.front();
 	}
 
 	bool Object::AddChild(Object *obj){
