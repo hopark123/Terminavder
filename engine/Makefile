@@ -7,6 +7,7 @@ SRCS= \
 	source/Vector.cpp \
 	source/GameManager.cpp \
 	source/Graphics.cpp \
+	source/InputManager.cpp \
 	source/TVDR.cpp
 OBJS=${SRCS:.cpp=.o}
 all: $(NAME)
