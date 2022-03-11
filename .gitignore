@@ -1,6 +1,10 @@
+.vscode/
+.gitignore
+.DS_Store/
+Source/lib/
+Source/SDL2/
 Terminvader
 engine/include/SDL2/*
 lib/*
-.vscode/*
 *.o
 *.a
