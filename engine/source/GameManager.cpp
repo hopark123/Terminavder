@@ -20,7 +20,6 @@ namespace Tvdr {
 		_curScene = nullptr;
 		_nxtScene = nullptr;
 		_inputManager = InputManager::Instance();
-		// gettimeofday(&_instance->stTime, NULL);
 		if (!Graphics::Initialized())
 			_quit = true;
 	}
@@ -45,6 +44,7 @@ namespace Tvdr {
 	int GameManager::Run(Scene *scene) {
 		if (!scene)
 			return 1;
+		gettimeofday(&Instance()->stTime, NULL);
 		Instance()->_curScene = scene;
 		Instance()->MainLoop();
 		GameManager::Release();
@@ -72,5 +72,10 @@ namespace Tvdr {
 				_nxtScene = nullptr;
 			}
 		}
+	}
+
+	long long GetDeltaTime(void) {
+		return ((curTime.tv_sec * (long)1000) + (curTime.tv_usec / 1000) - 
+					 ((stTime.tv_sec * (long)1000) + (stTime.tv_usec / 1000)));
 	}
 }
