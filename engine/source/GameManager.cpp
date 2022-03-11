@@ -19,7 +19,8 @@ namespace Tvdr {
 		_graphics = Graphics::Instance();
 		_curScene = nullptr;
 		_nxtScene = nullptr;
-		
+		_inputManager = InputManager::Instance();
+		// gettimeofday(&_instance->stTime, NULL);
 		if (!Graphics::Initialized())
 			_quit = true;
 	}
@@ -61,6 +62,8 @@ namespace Tvdr {
 					_quit = true;
 				}
 			}
+			gettimeofday(&curTime, NULL);
+			_inputManager->Update((curTime.tv_sec * (long)1000) + (curTime.tv_usec / 1000));
 			_curScene->UpdateAll();
 			_graphics->Render();
 			if (_nxtScene){

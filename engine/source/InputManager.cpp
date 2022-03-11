@@ -1,16 +1,17 @@
 #include "InputManager.hpp"
 
-InputManager *InputManager::sInstance = NULL;
 
-InputManager *InputManager::Instatnce() {
-	if (sInstance == NULL)
-		sInstance = new InputManager();
-	return sInstance;
+namespace Tvdr {
+InputManager *InputManager::_instance = NULL;
+InputManager *InputManager::Instance() {
+	if (_instance == NULL)
+		_instance = new InputManager();
+	return _instance;
 }
 
 void InputManager::Release() {
-	delete sInstance;
-	sInstance = NULL;
+	delete _instance;
+	_instance = NULL;
 }
 
 InputManager::InputManager() : _currentTime(0), _updateInterval(100) {
@@ -37,8 +38,8 @@ bool InputManager::KeyUP(SDL_Scancode scanCode) {
 
 bool InputManager::DoubleKeyDown(SDL_Scancode scanCode) {
 
-	if (KeyDown(scanCode) && GetKeyState(scanCode).lastUptime && sInstance->_currentTime - GetKeyState(scanCode).lastUptime < sInstance->_updateInterval) {
-		sInstance->_keyState[scanCode].isDouble = true;
+	if (KeyDown(scanCode) && GetKeyState(scanCode).lastUptime && _instance->_currentTime - GetKeyState(scanCode).lastUptime < _instance->_updateInterval) {
+		_instance->_keyState[scanCode].isDouble = true;
 		return true;
 	}
 	return false;
@@ -63,5 +64,6 @@ void InputManager::Update(uint currentTime) {
 }
 
 s_KeyState const &InputManager::GetKeyState(SDL_Scancode scanCode) {
-	return sInstance->_keyState[scanCode];
+	return _instance->_keyState[scanCode];
+}
 }
