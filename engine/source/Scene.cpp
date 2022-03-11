@@ -13,10 +13,10 @@ namespace Tvdr{
 	void Scene::UpdateAll(Object* obj){
 		if (obj == nullptr)
 			obj = this;
-		for (auto child : _children){
+		for (auto child : obj->_children){
 			UpdateAll(child);
 		}
-		this->Update();
-		this->Render();
+		obj->Update();
+		obj->Render();
 	}
 }

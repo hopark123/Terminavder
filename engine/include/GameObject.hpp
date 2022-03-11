@@ -8,7 +8,8 @@
 namespace Tvdr{
 	class GameObject : public Object{
 	private:
-		SDL_Surface* _model;
+		SDL_Surface* _surface;
+		SDL_Texture* _texture;
 		Vector _position;
 
 		virtual void Render();

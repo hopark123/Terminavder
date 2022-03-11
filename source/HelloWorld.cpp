@@ -6,9 +6,9 @@ HelloWorld::HelloWorld(){
 }
 
 void HelloWorld::Start(){
-
+	AddChild(new Tvdr::GameObject("resource/dots.bmp"));
 }
 
 void HelloWorld::Update(){
-	std::cout << "update " << std::endl; 
+
 }
