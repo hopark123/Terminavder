@@ -7,10 +7,10 @@ namespace Tvdr{
 
 	Object::Object() : _parent(nullptr){}
 	Object::~Object(){
-		for (auto child : _children)
-			delete child;
 		if (_parent)
 			_parent->_children.remove(this);
+		for (auto child : _children)
+			delete child;
 	}
 
 	bool Object::AddChild(Object *obj){
