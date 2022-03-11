@@ -6,7 +6,7 @@ HelloWorld::HelloWorld(){
 }
 
 void HelloWorld::Start(){
-	AddChild(new Tvdr::GameObject("resource/dots.bmp"));
+	AddChild(new Tvdr::GameObject("resource/smalldots.bmp"));
 }
 
 void HelloWorld::Update(){
