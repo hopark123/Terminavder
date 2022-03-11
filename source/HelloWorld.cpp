@@ -23,7 +23,7 @@ void HelloWorld::Update(){
 		std::cout << "Mulit" << std::endl;
 	// */
 
-	std::cout <<"time:"<< Tvdr::GameManager::GetDeltaTime() << std::endl;
+	std::cout <<"time:"<< Tvdr::GameManager::Instance()->GetDeltaTime() << std::endl;
 }
 
 
