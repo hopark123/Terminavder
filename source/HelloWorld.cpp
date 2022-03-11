@@ -22,4 +22,8 @@ void HelloWorld::Update(){
 	if (Tvdr::InputManager::MulitKeyDown(SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT))
 		std::cout << "Mulit" << std::endl;
 	// */
+
+	std::cout <<"time:"<< Tvdr::GameManager::Instance()->GetDeltaTime() << std::endl;
 }
+
+
