@@ -13,6 +13,7 @@ namespace Tvdr{
 		SDL_Event _events;
 		Scene* _curScene;
 		Scene* _nxtScene;
+	public :
 		struct timeval	stTime;
 		struct timeval	curTime;
 
@@ -21,6 +22,7 @@ namespace Tvdr{
 		static void Release();
 		static bool ChangeScene(Scene* scene);
 		static int Run(Scene *scene);
+		static long long GetDeltaTime(void);
 	private :
 		void MainLoop();
 

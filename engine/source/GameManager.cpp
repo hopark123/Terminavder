@@ -73,4 +73,8 @@ namespace Tvdr {
 			}
 		}
 	}
+
+	long long GetDeltaTime(void) {
+		return ((GameManager::Instance()->curTime.tv_sec * (long)1000) + (GameManager::Instance()->curTime.tv_usec / 1000) - ((GameManager::Instance()->stTime.tv_sec * (long)1000) + (GameManager::Instance()->stTime.tv_usec / 1000)));
+	}
 }
