@@ -67,7 +67,16 @@ SDL_Texture* Graphics::GetTextureFromSurface(SDL_Surface* surface){
 	return SDL_CreateTextureFromSurface(Instance()->_renderer, surface);
 }
 
-void Graphics::RenderTexture(SDL_Texture* texture){
+void Graphics::RenderTexture(SDL_Texture* texture, SDL_Rect* drect, float rotate){
 	auto renderer = Instance()->_renderer;
-	SDL_RenderCopy(renderer, texture, NULL, NULL);
+	int flip = SDL_FLIP_NONE;
+	if (drect->h < 0){
+		flip |= SDL_FLIP_VERTICAL;
+		drect->h = -drect->h;
+	}
+	if (drect->w < 0){
+		flip |= SDL_FLIP_HORIZONTAL;
+		drect->w = -drect->w;
+	}
+	SDL_RenderCopyEx(renderer, texture, NULL, drect, rotate, NULL, (SDL_RendererFlip)flip);
 }

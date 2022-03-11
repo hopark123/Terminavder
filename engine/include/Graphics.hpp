@@ -22,7 +22,7 @@ public :
 	void Render();
 
 	static SDL_Texture* GetTextureFromSurface(SDL_Surface* surface);
-	static void RenderTexture(SDL_Texture* texture); 
+	static void RenderTexture(SDL_Texture* texture, SDL_Rect* drect, float rotate); 
 private :
 	Graphics();
 	~Graphics();

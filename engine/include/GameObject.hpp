@@ -11,6 +11,9 @@ namespace Tvdr{
 		SDL_Surface* _surface;
 		SDL_Texture* _texture;
 		Vector _position;
+		Vector _textureSize;
+		Vector _scale;
+		float _rotate;
 
 		virtual void Render();
 	public:
