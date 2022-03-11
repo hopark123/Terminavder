@@ -17,7 +17,6 @@ namespace Tvdr{
 		virtual void Update();
 		virtual void Render();
 	public:
-		static Object* CreateObject(Object* parent = nullptr);
 		void SetParent(Object* parent);
 		Object const *GetParent();
 

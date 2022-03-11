@@ -16,7 +16,7 @@ namespace Tvdr{
 	bool Object::AddChild(Object *obj){
 		if (find(_children.begin(), _children.end(), obj) == _children.end()){
 			_children.push_back(obj);
-			obj->SetParent(this);
+			obj->_parent = this;
 			return true;
 		}
 		return false;
@@ -24,13 +24,6 @@ namespace Tvdr{
 
 	void Object::Update(){}
 	void Object::Render(){}
-
-	Object* Object::CreateObject(Object* parent){
-		auto obj = new Object;
-		obj->_parent = parent;
-		parent->AddChild(obj);
-		return obj;
-	}
 
 	void Object::SetParent(Object* parent){
 		if (_parent)

@@ -55,14 +55,14 @@ namespace Tvdr {
 			return;
 	
 		while (!_quit) {
+			_graphics->ClearRenderer();
 			while(SDL_PollEvent(&_events)) {
 				if (_events.type == SDL_QUIT) {
 					_quit = true;
 				}
-				_graphics->Render();
 			}
-
 			_curScene->UpdateAll();
+			_graphics->Render();
 			if (_nxtScene){
 				delete _curScene;
 				_curScene = _nxtScene;

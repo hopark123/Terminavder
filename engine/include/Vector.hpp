@@ -5,6 +5,6 @@ namespace Tvdr{
 	public:
 		float x, y;
 		Vector(float x, float y);
-		~Vector();
+		~Vector(){}
 	};
 }
