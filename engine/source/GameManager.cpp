@@ -55,14 +55,15 @@ namespace Tvdr {
 		if (!_curScene)
 			return;
 	
+		lastTime = stTime;
 		while (!_quit) {
+			gettimeofday(&curTime, NULL);
 			_graphics->ClearRenderer();
 			while(SDL_PollEvent(&_events)) {
 				if (_events.type == SDL_QUIT) {
 					_quit = true;
 				}
 			}
-			gettimeofday(&curTime, NULL);
 			_inputManager->Update((curTime.tv_sec * (long)1000) + (curTime.tv_usec / 1000));
 			_curScene->UpdateAll();
 			_graphics->Render();
@@ -71,11 +72,17 @@ namespace Tvdr {
 				_curScene = _nxtScene;
 				_nxtScene = nullptr;
 			}
+			lastTime = curTime;
 		}
 	}
 
-	long long GetDeltaTime(void) {
-		return ((curTime.tv_sec * (long)1000) + (curTime.tv_usec / 1000) - 
-					 ((stTime.tv_sec * (long)1000) + (stTime.tv_usec / 1000)));
+	long long GameManager::GetTime(void){
+		return ((Instance()->curTime.tv_sec * (long)1000) + (Instance()->curTime.tv_usec / 1000) - 
+					 ((Instance()->stTime.tv_sec * (long)1000) + (Instance()->stTime.tv_usec / 1000)));
+	}
+
+	long long GameManager::GetDeltaTime(void) {
+		return ((Instance()->curTime.tv_sec * (long)1000) + (Instance()->curTime.tv_usec / 1000) - 
+				 ((Instance()->lastTime.tv_sec * (long)1000) + (Instance()->lastTime.tv_usec / 1000)));
 	}
 }
