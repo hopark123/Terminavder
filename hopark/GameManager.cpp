@@ -27,6 +27,8 @@ GameManager::~GameManager() {
 	InputManager::Release();
 	mInputManager = NULL;
 }
+# include <sys/time.h>
+# include <unistd.h>
 
 void GameManager::Run() {
 	while (!mQuit) {
@@ -36,15 +38,21 @@ void GameManager::Run() {
 			}
 			mGraphics->Render();
 		}
-		mInputManager->Update();
+		static struct timeval	tv;
+
+		gettimeofday(&tv, NULL);
+		// std::cout <<  (tv.tv_sec * (long)1000) + (tv.tv_usec / 1000) << std::endl;
+		if ((tv.tv_sec * (long)1000) + (tv.tv_usec / 1000)) {
+			mInputManager->Update((tv.tv_sec * (long)1000) + (tv.tv_usec / 1000));
 		if (mInputManager->KeyDown(SDL_SCANCODE_RIGHT))
-			x++;
-		if (mInputManager->KeyDown(SDL_SCANCODE_LEFT))
-			x--;
-		if (mInputManager->KeyDown(SDL_SCANCODE_UP))
-			y++;
+			std::cout << "left" << std::endl;
 		if (mInputManager->KeyDown(SDL_SCANCODE_DOWN))
-			y--;
-		std::cout << "x["<< x  <<"]y[" << y <<"]\n";
+			std::cout << "down" << std::endl;
+		if (mInputManager->DoubleKeyDown(SDL_SCANCODE_8))
+			std::cout << "Double" << std::endl;
+		if (mInputManager->MulitKeyDown(SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT))
+			std::cout << "Mulit" << std::endl;
+		}
+		usleep(100000);
 	}
 }
