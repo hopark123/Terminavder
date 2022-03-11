@@ -24,7 +24,7 @@ namespace Tvdr{
 		static bool ChangeScene(Scene *scene);
 		static int Run(Scene *scene);
 		static long long GetTime(void);
-		static long long GetDeltaTime(void);
+		static float GetDeltaTime(void);
 
 	private:
 		void MainLoop();
