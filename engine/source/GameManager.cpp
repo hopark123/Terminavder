@@ -76,6 +76,10 @@ namespace Tvdr {
 		}
 	}
 
+	long long GameManager::GetTime() {
+		return ((Instance()->curTime.tv_sec * (long)1000) + (Instance()->curTime.tv_usec / 1000) - 
+				 ((Instance()->stTime.tv_sec * (long)1000) + (Instance()->stTime.tv_usec / 1000)));
+	}
 
 	float GameManager::GetDeltaTime() {
 		long long deltaTime = ((Instance()->curTime.tv_sec * (long)1000) + (Instance()->curTime.tv_usec / 1000) - 

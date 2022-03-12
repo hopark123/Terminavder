@@ -13,9 +13,10 @@ protected:
 	virtual void Update();
 private:
 	float _moveSpeed;
-	int		time;
-	Vector _stPos;
+	float _dirTime;
+	float _attackTime;
 	Player *_player;
+	Vector _dir;
 	
 	Enemy();
 };

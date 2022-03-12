@@ -8,7 +8,8 @@ SRCS= \
 	source/GameManager.cpp \
 	source/Graphics.cpp \
 	source/InputManager.cpp \
-	source/TVDR.cpp
+	source/TVDR.cpp \
+	source/MemoryPool.cpp 
 OBJS=${SRCS:.cpp=.o}
 all: $(NAME)
 .cpp.o: $(SRCS)

@@ -24,6 +24,7 @@ namespace Tvdr{
 		void SetScale(float x, float y) { _scale.x = x;_scale.y = y;}
 		void SetScale(Vector vec){_scale = vec;}
 		Vector const &GetScale() {return _scale;}
+		Vector GetPrintSize() {return _textureSize * _scale;}
 
 		GameObject(std::string imagePath);
 		virtual ~GameObject();
