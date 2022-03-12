@@ -1,5 +1,5 @@
-#ifndef _INPUTMANAGER_
-# define _INPUTMANAGER_
+#pragma once
+
 # include <SDL2/SDL.h>
 # include <iostream>
 
@@ -36,4 +36,3 @@ namespace Tvdr{
 		~InputManager();
 	};
 }
-#endif

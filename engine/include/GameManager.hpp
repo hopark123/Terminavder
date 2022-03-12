@@ -4,25 +4,29 @@
 #include <Scene.hpp>
 #include <InputManager.hpp>
 namespace Tvdr{
-	class GameManager {
-	private :
+	class GameManager{
+	private:
 		static GameManager *_instance;
 		InputManager *_inputManager;
 		bool _quit;
 		Graphics *_graphics;
 		SDL_Event _events;
-		Scene* _curScene;
-		Scene* _nxtScene;
-		struct timeval	stTime; /**/
-		struct timeval	curTime; /**/
+		Scene *_curScene;
+		Scene *_nxtScene;
+
+		timeval stTime;
+		timeval curTime;
+		timeval lastTime;
 
 	public:
-		static GameManager* Instance();
+		static GameManager *Instance();
 		static void Release();
-		static bool ChangeScene(Scene* scene);
+		static bool ChangeScene(Scene *scene);
 		static int Run(Scene *scene);
-		static long long GetDeltaTime(void); /**/
-	private :
+		static long long GetTime(void);
+		static float GetDeltaTime(void);
+
+	private:
 		void MainLoop();
 
 		GameManager();

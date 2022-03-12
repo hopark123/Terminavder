@@ -2,12 +2,14 @@ NAME=Terminvader
 HEADER = -I./source/
 ENGINE = engine
 SRCS =	main.cpp \
-	source/HelloWorld.cpp
+	source/HelloWorld.cpp \
+	source/Player.cpp
 $(NAME) : all
 
 all:
 	$(MAKE) -C ./$(ENGINE)
-	clang++ $(SRCS) $(HEADER) -o $(NAME) -I./$(ENGINE)/include `sdl2-config --cflags --libs` $(ENGINE)/$(ENGINE).a
+	clang++ --std=c++20 $(SRCS) $(HEADER) -o $(NAME) \
+		-I./$(ENGINE)/include `sdl2-config --cflags --libs` $(ENGINE)/$(ENGINE).a
 
 test: re
 	./$(NAME)
