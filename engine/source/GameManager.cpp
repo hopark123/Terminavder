@@ -79,26 +79,3 @@ namespace Tvdr {
 					 ((GameManager::Instance()->stTime.tv_sec * (long)1000) + (GameManager::Instance()->stTime.tv_usec / 1000)));
 	}
 }
-
-
-while (!close) {
-	SDL_Event event;
-	// Events management
-	while (SDL_PollEvent(&event)) {
-		switch (event.type) {
-		case SDL_QUIT:
-			// handling of close button
-			close = 1;
-			break;
-		case SDL_KEYDOWN:
-			// keyboard API for key pressed
-			switch (event.key.keysym.scancode) {
-			case SDL_SCANCODE_W:
-			case SDL_SCANCODE_UP:
-				dest.y -= speed / 30;
-				break;
-			default:
-				break;
-			}
-		}
-	}
