@@ -27,6 +27,11 @@ namespace Tvdr{
 		return Vector(x * f, y * f);
 	}
 
+	Vector Vector::operator*(Vector vec){
+		return Vector(x * vec.x, y * vec.y);
+	}
+
+
 	Vector Vector::operator/(float f){
 		return Vector(x / f, y / f);
 	}

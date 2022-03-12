@@ -12,6 +12,7 @@ namespace Tvdr{
 		Vector operator+(Vector vec);
 		Vector operator-(Vector vec);
 		Vector operator*(float f);
+		Vector operator*(Vector vec);
 		Vector operator/(float f);
 	};
 }
