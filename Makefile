@@ -3,7 +3,11 @@ HEADER = -I./source/
 ENGINE = engine
 SRCS =	main.cpp \
 	source/HelloWorld.cpp \
-	source/Player.cpp
+	source/Player.cpp \
+	source/Enemy.cpp \
+	source/Enemy_Attack.cpp \
+	source/Player_Attack.cpp \
+	
 $(NAME) : all
 
 all:

@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Player_Attack.hpp"
 
 using namespace Tvdr;
 
@@ -25,6 +26,7 @@ void Player::Update(){
 		dir.x -= 1;
 	if (InputManager::GetKey(SDL_SCANCODE_RIGHT))
 		dir.x += 1;
-	
+	if (InputManager::KeyUP(SDL_SCANCODE_SPACE))
+		AddChild(new Player_Attack(pos + dir.Norm() - Vector(0, 10),this));
 	SetPosition(pos + dir.Norm() * _moveSpeed * GameManager::GetDeltaTime());
 }
