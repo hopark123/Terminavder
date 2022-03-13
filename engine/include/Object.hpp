@@ -24,6 +24,7 @@ namespace Tvdr{
 	public:
 		void SetParent(Object* parent);
 		Object const *GetParent();
+		void Release();
 
 		Object();
 		virtual ~Object();

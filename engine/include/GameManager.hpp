@@ -3,8 +3,11 @@
 #include <Graphics.hpp>
 #include <Scene.hpp>
 #include <InputManager.hpp>
+#include <list>
+
 namespace Tvdr{
 	class GameManager{
+		friend class Object;
 	private:
 		static GameManager *_instance;
 		InputManager *_inputManager;
@@ -18,6 +21,7 @@ namespace Tvdr{
 		timeval curTime;
 		timeval lastTime;
 
+		std::list<Object*> _releaseObject;
 	public:
 		static GameManager *Instance();
 		static void Release();

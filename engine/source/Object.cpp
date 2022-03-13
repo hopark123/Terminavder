@@ -1,6 +1,7 @@
 #include "Object.hpp"
 #include <algorithm>
 #include <iostream>
+#include "GameManager.hpp"
 
 using namespace std;
 
@@ -35,5 +36,9 @@ namespace Tvdr{
 
 	Object const *Object::GetParent(){
 		return _parent;
+	}
+
+	void Object::Release(){
+		GameManager::Instance()->_releaseObject.push_back(this);
 	}
 }

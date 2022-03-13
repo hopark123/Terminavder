@@ -22,4 +22,7 @@ void Player_Attack::Update(){
 	auto dir = Vector(0, -1);
 
 	SetPosition(pos + dir * _moveSpeed * GameManager::GetDeltaTime());
+
+	if (pos.y < -GetPrintSize().y || Graphics::SCREEN_HEIGHT < pos.y)
+		Release();
 }
