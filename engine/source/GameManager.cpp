@@ -67,6 +67,13 @@ namespace Tvdr {
 			_inputManager->Update((curTime.tv_sec * (long)1000) + (curTime.tv_usec / 1000));
 			_curScene->UpdateAll();
 			_graphics->Render();
+			
+			for (auto it = _releaseObject.begin(); it != _releaseObject.end();){
+				auto obj = (*it);
+				it = _releaseObject.erase(it);
+				delete obj;
+			}
+
 			if (_nxtScene){
 				delete _curScene;
 				_curScene = _nxtScene;
