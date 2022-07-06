@@ -41,7 +41,7 @@ namespace Tvdr{
 			return false;
 		}
 
-		mWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		mWindow = SDL_CreateWindow("KRAFTON", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		
 		if (mWindow == NULL) {
 			printf("window creation ERROR : %s\n", SDL_GetError());
